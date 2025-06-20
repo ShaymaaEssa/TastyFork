@@ -7,3 +7,10 @@
 @import "flowbite/src/themes/default";
 @plugin "flowbite/plugin";
 @source "../node_modules/flowbite";
+
+
+html, body{
+    height: 100%;
+    
+    margin: 0;
+}

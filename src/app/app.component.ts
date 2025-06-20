@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 
@@ -10,9 +11,13 @@ import { initFlowbite } from 'flowbite';
 })
 export class AppComponent implements OnInit {
   title = 'tastyfork';
+  private readonly id = inject(PLATFORM_ID);
 
    ngOnInit(): void {
-    initFlowbite();
+    if(isPlatformBrowser(this.id)){
+      initFlowbite();
+    }
+
   }
 
 }
