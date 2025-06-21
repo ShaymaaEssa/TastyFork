@@ -2,6 +2,10 @@
 
 //tailwind
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 //flowbite
 @import "flowbite/src/themes/default";
