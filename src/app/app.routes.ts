@@ -5,11 +5,12 @@ import { SigninComponent } from './pages/signin/signin.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 import { HomeComponent } from './pages/home/home.component';
+import { loggedUserGuard } from './core/guards/logged-user/logged-user.guard';
 
 export const routes: Routes = [
 
     {path:'', redirectTo:'home', pathMatch:'full'},
-    {path:'', component:AuthLayoutComponent, children:[
+    {path:'', component:AuthLayoutComponent,canActivate: [loggedUserGuard],  children:[
         {path:pages.Signin, component:SigninComponent, title:'Sign-in'}, 
         {path:pages.Signup, component:SignupComponent, title:'sign-up'}
     ]},

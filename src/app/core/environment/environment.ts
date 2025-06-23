@@ -6,4 +6,5 @@ export const environment = {
 
   export const userToken ={
     token : 'userToken-tastyfork',
+    access_token:'accesstoken-tastyfork'
   }

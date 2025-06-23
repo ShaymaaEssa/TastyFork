@@ -37,7 +37,7 @@ export class SigninComponent {
       console.log(accessToken);
       console.log(res.auth);
       if (accessToken) {
-        localStorage.setItem('tastyForm_access_token', accessToken);
+        localStorage.setItem(userToken.access_token, accessToken);
       }
         localStorage.setItem(userToken.token, res.profile.name);
         this.router.navigate(['/home']);
