@@ -101,7 +101,11 @@
                                 <li>password is required</li>
                               }
                               @else if (passwordControl?.getError('pattern')) {
-                                <li>password is not valid</li>
+                                <li>password is not valid, must has:</li>
+                                <li>At least 1 capital character</li>
+                                <li>At least 1 special character</li>
+                                <li>At least 1 digit</li>
+                                <li>At least 7 characters</li>
                               }
                           </ul>
                         </div>
