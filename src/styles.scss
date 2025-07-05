@@ -12,6 +12,9 @@
 @plugin "flowbite/plugin";
 @source "../node_modules/flowbite";
 
+//ng-owl
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 
 html, body{
     height: 100%;
