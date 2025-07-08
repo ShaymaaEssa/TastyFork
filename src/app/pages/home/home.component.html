@@ -1,41 +1,100 @@
-<section class="hero ">
-  <owl-carousel-o [options]="customMainSlider">
-            <ng-template carouselSlide>
-        <div>
-            <div class="img">
-                <img src="/main-slider/slider5.jpg" alt="restaurant slide 1">
+<section class="hero h-screen overflow-hidden">
+
+
+
+            
+    <owl-carousel-o [options]="customMainSlider">
+        <ng-template carouselSlide>
+            <div class="relative h-[100vh]">
+                <div class="absolute inset-0 bg-black opacity-40 z-10"></div>
+
+                <div class="img w-full h-full z-0 object-cover">
+                    <img src="/main-slider/slider3.jpg" alt="restaurant slide 1" class="w-full h-full object-cover">
+
+                </div>
+
+                <!-- Text Content on Top -->
+                <div
+                    class="absolute inset-0 z-20 flex flex-col items-center justify-center text-white text-center px-4">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome to Tasty-Fork</h1>
+                    <p class="text-lg md:text-xl max-w-xl">
+                        Discover the best meals and tasty dishes from our rich menu!
+                    </p>
+                    <button
+                        class="mt-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-lg">
+                        Explore Menu
+                    </button>
+                </div>
+
+
             </div>
-        </div>
-    </ng-template>
+        </ng-template>
 
 
 
         <ng-template carouselSlide>
-        <div>
-            <div class="img">
-                <img src="/main-slider/slider7.jpg" alt="restaurant slide 1">
+            <div class="relative h-[100vh]">
+                <!-- Overlay -->
+                <div class="absolute inset-0 bg-black opacity-40 z-10"></div>
+
+                <div class="img w-full h-full z-0 object-cover">
+                    <img src="/main-slider/slider7.jpg" alt="restaurant slide 1" class="w-full h-full object-cover">
+                </div>
+
+                <div
+                    class="absolute inset-0 z-20 flex flex-col items-center justify-center text-white text-center px-4">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Your Cozy Dining Spot</h1>
+                    <p class="text-lg md:text-xl max-w-xl">Relax and enjoy unforgettable meals in a warm, welcoming
+                        place.</p>
+                </div>
             </div>
-        </div>
-    </ng-template>
+        </ng-template>
 
-    <ng-template carouselSlide>
-        <div>
-            <div class="img">
-                <img src="/main-slider/slider1.jpg" alt="restaurant slide 1">
+        <ng-template carouselSlide>
+            <div class="relative h-[100vh]">
+                <div class="absolute inset-0 bg-black opacity-40 z-10"></div>
+                <div class="img w-full h-full z-0 object-cover">
+                    <img src="/main-slider/slider1.jpg" alt="restaurant slide 1" class="w-full h-full object-cover">
+                </div>
+
+                <div
+                    class="absolute inset-0 z-20 flex flex-col items-center justify-center text-white text-center px-4">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Taste the Difference</h1>
+                    <p class="text-lg md:text-xl max-w-xl">Savor expertly crafted dishes from fresh ingredients every
+                        day.</p>
+                </div>
             </div>
-        </div>
-    </ng-template>
+        </ng-template>
 
-    <ng-template carouselSlide>
-        <div>
-            <div class="img">
-                <img src="/main-slider/slider3.jpg" alt="restaurant slide 1">
+        <ng-template carouselSlide>
+            <div class="relative h-[100vh]">
+                <div class="absolute inset-0 bg-black opacity-40 z-10"></div>
+                <div class="img w-full h-full z-0 object-cover">
+                    <img src="/main-slider/slider5.jpg" alt="restaurant slide 1" class="w-full h-full object-cover">
+                </div>
+                <div
+                    class="absolute inset-0 z-20 flex flex-col items-center justify-center text-white text-center px-4">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Fresh From the Farm</h1>
+                    <p class="text-lg md:text-xl max-w-xl">We use the freshest organic ingredients to bring you real
+                        flavor.</p>
+                </div>
             </div>
-        </div>
-    </ng-template>
+        </ng-template>
 
 
 
 
-  </owl-carousel-o>
+    </owl-carousel-o>
 </section>
+
+<!-- categories-start  -->
+<section class="categories bg-[#F4F4F4] py-16">
+    <div class="container text-center mx-auto">
+        <h2>Popular Categories</h2>
+        <p>Explore our diverse food categories to discover delicious meals tailored to every taste. Whether you're craving something spicy, sweet, or savory — we have something for everyone!</p>
+
+
+    </div>
+
+</section>
+ <!-- categories-end  -->
