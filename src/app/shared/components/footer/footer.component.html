@@ -1,9 +1,75 @@
-<section class="bg-[#121921]">
+<section class="footer bg-[#121921] py-10">
 
-    <div class="container">
-        <div class="footer1"></div>
-        <div class="seprator"></div>
-        <div class="footer2"></div>
+    <div class="container mx-auto">
+        <div class="footer1">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="item">
+                   
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a >Home</a></li>
+                        <li><a >Menu-Items</a></li>
+                        <li><a >Categories</a></li>
+                        <li><a >Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="item">
+                    <h5>Categories</h5>
+                    <li><a>Top Categories</a></li>
+                    <li><a>Best Rated</a></li>
+                    <li><a>Best Price</a></li>
+                </div>
+                <div class="item">
+                    <h5>Contacts</h5>
+                    <ul>
+                        <li><a href=""><i class="fa-solid fa-location-dot"></i> 97845 ElTahrir st. 567Cairo - Egypt</a></li>
+                        <li><a href=""><i class="fa-solid fa-mobile-screen"></i> +94 000-23-000</a></li>
+                        <li><a href="mailto:info@mail.com"><i class="fa-solid fa-envelope"></i> {{ 'info' + '@' + 'mail.com' }}</a></li>
+                    </ul>
+                </div>
+
+                <div class="item">
+                    <h5>Keep In Touch</h5>
+                    <h5>Follow Us</h5>
+                    <div class="social flex flex-row gap-3">
+                        <div class="icon">
+                            <i class="fa-brands fa-facebook"></i>
+                        </div>
+
+                        <div class="icon">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </div>
+
+                        <div class="icon">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+
+                        <div class="icon">
+                            <i class="fa-brands fa-telegram"></i>
+                        </div>
+
+                        <div class="icon">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="seprator w-full h-[1px] bg-[#444] my-5"></div>
+        <div class="footer2 flex flex-wrap justify-between py-5"> 
+            <div class="cards-img">
+                <img src="/footer/cards_all.svg" alt="payment cards">
+            </div>
+
+            <div class="flex flex-row gap-3">
+                <a href="" class="cursor-pointer">Terms and conditions</a>
+                <span>|</span>
+                <a href="" class="cursor-pointer">Privacy</a>
+                <span>|</span>
+                <a href="" class="cursor-pointer">&copy; 2025 Tasty-Fork</a>
+            </div>
+        </div>
     </div>
 
 </section>

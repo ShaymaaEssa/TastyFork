@@ -1,0 +1,52 @@
+h5, .footer a, .footer span{
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: .89rem;
+    color: #c0c2c7;
+}
+
+h5{
+    font-size: 1.2rem;
+}
+
+.footer a:hover{
+    color: #fff;
+}
+
+
+
+.footer1 ul{
+    margin-top: 10px;
+}
+
+.footer1 li{
+    transition: all 1s;
+}
+.footer1 li:hover{
+    transform: translateX(10px);
+}
+ .footer1 a{
+    font-size: .89rem;
+    cursor: pointer;
+}
+
+h5{
+    color: white;
+}
+
+.footer1 li a i{
+    padding-right: 5px;
+}
+
+.footer1 .social i{
+    color: #c0c2c7;
+    font-size: 1.25rem;
+    transition: all 150ms;
+    
+}
+
+.footer1 .social i:hover{
+    color: white;
+    cursor: pointer;
+    transform: translateY(-3px);
+}
