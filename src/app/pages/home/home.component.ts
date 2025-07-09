@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CategoriesService } from '../../core/services/Categories/categories.service';
+import { ICategory } from '../../shared/interfaces/icategory';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ import { CategoriesService } from '../../core/services/Categories/categories.ser
 export class HomeComponent implements OnInit{
 
 
-  customMainSlider: OwlOptions = {
+  heroSlider: OwlOptions = {
     loop: true,
     mouseDrag: true,
     touchDrag: true,
@@ -39,6 +40,36 @@ export class HomeComponent implements OnInit{
     nav: false
   }
 
+    categoriesSlider: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: false,
+    dots: true,
+    autoplay:true,
+    autoplayTimeout:4000,
+    autoplayHoverPause:true,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items:3
+      },
+      940: {
+        items: 5
+      }
+    },
+    nav: false
+  }
+
+  categoriesArr : ICategory [] = [];
+
   private categoryService = inject(CategoriesService);
   ngOnInit(): void {
     this.getCategories();
@@ -51,6 +82,7 @@ export class HomeComponent implements OnInit{
       {
         next:(res)=>{
           console.log(res);
+          this.categoriesArr = res;
         },
         error:(err)=>{
           console.log(err.message)

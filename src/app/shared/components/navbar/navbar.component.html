@@ -1,10 +1,11 @@
-<nav class="bg-transparent border-gray-200 dark:bg-gray-900 fixed top-0 left-0 z-50 w-full text-white ">
+<nav [ngClass]="{'bg-transparent text-white': !isScrolled,'bg-white text-black shadow-sm': isScrolled}"
+ class="border-gray-200 dark:bg-gray-900 fixed top-0 left-0 z-50 w-full transition-all duration-300">
   <div class=" p-4 flex items-center justify-between w-full">
     <a
       routerLink="/home"
       class="flex items-center space-x-3 rtl:space-x-reverse"
     >
-      <img src="/logo.svg" class="h-12" alt="tastyfork Logo" />
+      <img src="/logo.svg" class="h-12" alt="tastyfork Logo" [class.logo]="!isScrolled"/>
       <span
         class="self-center text-[30px] font-bold whitespace-nowrap dark:text-white"
         >Tasty-Fork</span
@@ -42,27 +43,28 @@
         <li>
           <a
             routerLink="/home"
-            class="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent  md:p-0 "
+            class="block py-2 px-3 bg-blue-700 rounded-sm md:bg-transparent  md:p-0 "
             aria-current="page"
+            routerLinkActive="text-blue-700"
             >Home</a
           >
         </li>
         <li>
           <a
-            class="block py-2 px-3 text-white rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-            >Menu-Items</a
+            class="block py-2 px-3 cursor-pointer rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+            routerLinkActive="text-blue-700">Menu-Items</a
           >
         </li>
         <li>
           <a
-            class="block py-2 px-3 text-white rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-            >Categories</a
+            class="block py-2 px-3 cursor-pointer rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+            routerLinkActive="text-blue-700">Categories</a
           >
         </li>
         <li>
           <a
-            class="block py-2 px-3 text-white rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-            >Contant US</a
+            class="block py-2 px-3 cursor-pointer rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+            routerLinkActive="text-blue-700">Contant US</a
           >
         </li>
       </ul>
@@ -72,7 +74,7 @@
         <li >
           <a
             routerLink="/signin"
-            class="block py-2 px-3 text-white rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+            class="block cursor-pointer py-2 px-3 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
             aria-current="page"
             >Sign in</a
           >
@@ -80,7 +82,7 @@
         <li >
           <a
             routerLink="/signup"
-            class="block py-2 px-3 text-white rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+            class="block py-2 px-3  cursor-pointer rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
             aria-current="page"
             >Sign up</a
           >

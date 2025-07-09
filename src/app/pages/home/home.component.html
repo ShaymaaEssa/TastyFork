@@ -2,8 +2,8 @@
 
 
 
-            
-    <owl-carousel-o [options]="customMainSlider">
+
+    <owl-carousel-o [options]="heroSlider">
         <ng-template carouselSlide>
             <div class="relative h-[100vh]">
                 <div class="absolute inset-0 bg-black opacity-40 z-10"></div>
@@ -91,10 +91,26 @@
 <section class="categories bg-[#F4F4F4] py-16">
     <div class="container text-center mx-auto">
         <h2>Popular Categories</h2>
-        <p>Explore our diverse food categories to discover delicious meals tailored to every taste. Whether you're craving something spicy, sweet, or savory — we have something for everyone!</p>
+        <p class="desc pb-5">Explore our diverse food categories to discover delicious meals tailored to every taste.
+            Whether you're craving something spicy, sweet, or savory — we have something for everyone!</p>
 
+        <owl-carousel-o [options]="categoriesSlider" class="py-5">
+            @for(category of categoriesArr; track category.id ){
+            <ng-template carouselSlide>
+                <div class="card bg-white py-16 px-8 m-4 flex flex-col justify-center items-center">
+                    <div class="img flex justify-center items-center">
+                        <img [src]="category.image_url" [alt]="category.name" class="w-full">
+                    </div>
+
+                    <h4 class="py-3">{{category.name}}</h4>
+                    <p class="dish-desc">{{category.description}}</p>
+                </div>
+            </ng-template>
+            }
+
+        </owl-carousel-o>
 
     </div>
 
 </section>
- <!-- categories-end  -->
+<!-- categories-end  -->
