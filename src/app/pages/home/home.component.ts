@@ -2,6 +2,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CategoriesService } from '../../core/services/Categories/categories.service';
 import { ICategory } from '../../shared/interfaces/icategory';
+import { IItems } from '../../shared/interfaces/iitems';
+import { BestsellersService } from '../../core/services/bestsellers/bestsellers.service';
 
 @Component({
   selector: 'app-home',
@@ -69,10 +71,15 @@ export class HomeComponent implements OnInit{
   }
 
   categoriesArr : ICategory [] = [];
+  bestSellerArr : IItems[] = [];
 
   private categoryService = inject(CategoriesService);
+  private bestSellerService = inject(BestsellersService);
+
+
   ngOnInit(): void {
     this.getCategories();
+    this.getBestSeller();
     
   }
 
@@ -89,6 +96,18 @@ export class HomeComponent implements OnInit{
         }
       }
     )
+  }
+
+  getBestSeller(){
+    this.bestSellerService.getBestSellers().subscribe({
+      next:(res)=>{
+        console.log(`BestSeller Arr: ${res}`);
+        this.bestSellerArr = res;
+      },
+      error:(err)=>{
+        console.log(err.message)
+      }
+    })
   }
 
 }

@@ -4,13 +4,13 @@
         <div class="footer1">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="item">
-                   
+
                     <h5>Quick Links</h5>
                     <ul>
-                        <li><a >Home</a></li>
-                        <li><a >Menu-Items</a></li>
-                        <li><a >Categories</a></li>
-                        <li><a >Contact Us</a></li>
+                        <li><a>Home</a></li>
+                        <li><a>Menu-Items</a></li>
+                        <li><a>Categories</a></li>
+                        <li><a>Contact Us</a></li>
                     </ul>
                 </div>
 
@@ -23,14 +23,34 @@
                 <div class="item">
                     <h5>Contacts</h5>
                     <ul>
-                        <li><a href=""><i class="fa-solid fa-location-dot"></i> 97845 ElTahrir st. 567Cairo - Egypt</a></li>
+                        <li><a href=""><i class="fa-solid fa-location-dot"></i> 97845 ElTahrir st. 567Cairo - Egypt</a>
+                        </li>
                         <li><a href=""><i class="fa-solid fa-mobile-screen"></i> +94 000-23-000</a></li>
-                        <li><a href="mailto:info@mail.com"><i class="fa-solid fa-envelope"></i> {{ 'info' + '@' + 'mail.com' }}</a></li>
+                        <li><a href="mailto:info@mail.com"><i class="fa-solid fa-envelope"></i> {{ 'info' + '@' +
+                                'mail.com' }}</a></li>
                     </ul>
                 </div>
 
                 <div class="item">
                     <h5>Keep In Touch</h5>
+                    <div class="email-sub flex flex-row gap-1 justify-start items-center">
+                        <div class="relative mb-6">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
+                                    <path
+                                        d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z" />
+                                    <path
+                                        d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
+                                </svg>
+                            </div>
+                            <input type="text" id="input-group-1"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="name@flowbite.com">
+                        </div>
+                        <button type="button" class="mb-6 px-5 cursor-pointer p-2.5 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-4  me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Subscribe</button>
+
+                    </div>
                     <h5>Follow Us</h5>
                     <div class="social flex flex-row gap-3">
                         <div class="icon">
@@ -57,7 +77,7 @@
             </div>
         </div>
         <div class="seprator w-full h-[1px] bg-[#444] my-5"></div>
-        <div class="footer2 flex flex-wrap justify-between py-5"> 
+        <div class="footer2 flex flex-wrap justify-between py-5">
             <div class="cards-img">
                 <img src="/footer/cards_all.svg" alt="payment cards">
             </div>

@@ -90,7 +90,7 @@
 <!-- categories-start  -->
 <section class="categories bg-[#F4F4F4] py-16">
     <div class="container text-center mx-auto">
-        <h2>Popular Categories</h2>
+        <h2 class="section-head">Popular Categories</h2>
         <p class="desc pb-5">Explore our diverse food categories to discover delicious meals tailored to every taste.
             Whether you're craving something spicy, sweet, or savory — we have something for everyone!</p>
 
@@ -114,3 +114,33 @@
 
 </section>
 <!-- categories-end  -->
+
+<!-- bestseller-start  -->
+<section class="bestseller bg-[#F4F4F4] py-16">
+    <div class="container text-center mx-auto">
+        <h2 class="section-head">Best Selling Dishes </h2>
+        <p class="desc text-gray-600 max-w-xl mx-auto">Discover the most loved and frequently ordered items by our
+            customers. These popular picks are sure to satisfy your cravings!</p>
+
+        <div class="grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            @for (item of bestSellerArr; track item.id) {
+
+            <div class="item bg-[#DBEAED]">
+                <div class="image">
+                    <img [src]="item.image_url" alt="" class="w-full">
+                </div>
+
+                <span>{{item.category_id}}</span>
+                <span>{{item.name}}</span>
+                <span>{{item.price}}</span>
+                <button>Add To Cart</button>
+            </div>
+
+            }
+
+
+        </div>
+    </div>
+</section>
+<!-- bestseller-end  -->
