@@ -4,10 +4,11 @@ import { CategoriesService } from '../../core/services/Categories/categories.ser
 import { ICategory } from '../../shared/interfaces/icategory';
 import { IItems } from '../../shared/interfaces/iitems';
 import { BestsellersService } from '../../core/services/bestsellers/bestsellers.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule],
+  imports: [CarouselModule, CurrencyPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

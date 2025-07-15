@@ -122,19 +122,19 @@
         <p class="desc pb-5">Discover the most loved and frequently ordered items by our
             customers. These popular picks are sure to satisfy your cravings!</p>
 
-        <div class="grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
             @for (item of bestSellerArr; track item.id) {
 
-            <div class="item bg-[#DBEAED] flex flex-col gap-3 items-center py-10 w-[400px]">
-                <div class="image w-[300px]">
+            <div class="item bg-[#DBEAED] flex flex-col gap-3 items-center py-10 ">
+                <div class="image w-[200px] pb-5">
                     <img [src]="item.image_url" alt="" class="w-full rounded-xl">
                 </div>
 
-                <span>{{item.category_id}}</span>
-                <span>{{item.name}}</span>
-                <span>{{item.price}}</span>
-                <button>Add To Cart</button>
+                <span class="font-medium text-[17px] leading-[20px] text-[#333] hover:text-orange-600 hover:cursor-pointer"> {{ item.category_name }} </span>
+                <h4 class="hover:text-orange-600 hover:cursor-pointer" >{{item.name}}</h4>
+                <span class="font-normal text-[20px] leading-[20px] text-[#333]">{{item.price| currency:'EGP'}}</span>
+                <button class="mt-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-16 cursor-pointer uppercase  ">Add To Cart</button>
             </div>
 
             }
