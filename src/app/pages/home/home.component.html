@@ -189,22 +189,23 @@
 <section class="daydeals bg-white py-16">
     <div class="container text-center mx-auto px-4">
         <h2 class="section-head capitalize">Deals of the day</h2>
-        <p class="desc pb-5">
+        <p class="desc pb-10">
             Discover the best deals items Now. Don't miss them!
         </p>
 
-        <owl-carousel-o [options]="dayDealsSlider" class="py-5">
+        <owl-carousel-o [options]="dayDealsSlider" >
             @for(item of bestDealsArr;track item.id){
             <ng-template carouselSlide>
-                <div class="card">
-                    <div class="image w-[150px]">
-                        <img [src]="item.image_url" [alt]="item.name" class="w-full">
+                <div class="card flex flex-col items-center pb-3 bg-white border border-[#F3F5F9]  mx-4 gap-y-4">
+                    <div class="image w-full ">
+                        <img [src]="item.image_url" [alt]="item.name" class="w-full rounded-lg">
                     </div>
 
-                    <div class="details">
-                        <span class="font-medium text-[17px] text-[#333] hover:text-orange-600 cursor-pointer">{{
+
+                    <div class="details flex flex-col items-center ">
+                        <span class="font-normal text-[16px] text-[#333] hover:text-orange-600 cursor-pointer">{{
                             item.category_name }}</span>
-                        <h4 class="hover:text-orange-600 cursor-pointer">{{ item.name }}</h4>
+                        <h4 class="hover:text-orange-600 cursor-pointer font-[1.2rem] font-medium" >{{ item.name }}</h4>
                         <span class="text-[20px] text-[#333] block">{{ item.price | currency: 'EGP' }}</span>
                     </div>
                 </div>
