@@ -3,8 +3,8 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CategoriesService } from '../../core/services/Categories/categories.service';
 import { ICategory } from '../../shared/interfaces/icategory';
 import { IItems } from '../../shared/interfaces/iitems';
-import { BestsellersService } from '../../core/services/bestsellers/bestsellers.service';
 import { CurrencyPipe } from '@angular/common';
+import { ItemsService } from '../../core/services/items-service/items.service';
 
 @Component({
   selector: 'app-home',
@@ -71,16 +71,47 @@ export class HomeComponent implements OnInit{
     nav: false
   }
 
+  dayDealsSlider: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: false,
+    dots: true,
+    autoplay:true,
+    autoplayTimeout:4000,
+    autoplayHoverPause:true,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items:3
+      },
+      940: {
+        items:4
+      }
+    },
+    nav: false
+  }
+
+
   categoriesArr : ICategory [] = [];
   bestSellerArr : IItems[] = [];
+  bestDealsArr : IItems[] = [];
 
   private categoryService = inject(CategoriesService);
-  private bestSellerService = inject(BestsellersService);
+  private itemsService = inject(ItemsService);
 
 
   ngOnInit(): void {
     this.getCategories();
     this.getBestSeller();
+    this.getBestDealsItems();
     
   }
 
@@ -100,15 +131,28 @@ export class HomeComponent implements OnInit{
   }
 
   getBestSeller(){
-    this.bestSellerService.getBestSellers().subscribe({
+    this.itemsService.getBestSellers().subscribe({
       next:(res)=>{
         console.log(`BestSeller Arr: ${res}`);
         this.bestSellerArr = res;
       },
       error:(err)=>{
-        console.log(err.message)
+        alert(err.message);
       }
     })
+  }
+
+  getBestDealsItems(){
+    this.itemsService.getBestDeals().subscribe({
+      next:(res)=>{
+        console.log(`Best Deals: ${res}`);
+        this.bestDealsArr = res;
+      }, 
+      error:(err)=>{
+        alert(err.message);
+      }
+    })
+
   }
 
 }

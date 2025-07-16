@@ -89,7 +89,7 @@
 
 <!-- categories-start  -->
 <section class="categories bg-[#F4F4F4] py-16">
-    <div class="container text-center mx-auto">
+    <div class="container text-center mx-auto px-4 ">
         <h2 class="section-head">Popular Categories</h2>
         <p class="desc pb-5">Explore our diverse food categories to discover delicious meals tailored to every taste.
             Whether you're craving something spicy, sweet, or savory — we have something for everyone!</p>
@@ -116,31 +116,102 @@
 <!-- categories-end  -->
 
 <!-- bestseller-start  -->
+<!-- Best Seller Section -->
 <section class="bestseller bg-white py-16">
-    <div class="container text-center mx-auto">
-        <h2 class="section-head">Best Selling Dishes </h2>
-        <p class="desc pb-5">Discover the most loved and frequently ordered items by our
-            customers. These popular picks are sure to satisfy your cravings!</p>
+    <div class="container text-center mx-auto px-4">
+        <h2 class="section-head">Best Selling Dishes</h2>
+        <p class="desc pb-5">
+            Discover the most loved and frequently ordered items by our customers. These popular picks are sure to
+            satisfy your cravings!
+        </p>
 
-        <div class="grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-            @for (item of bestSellerArr; track item.id) {
-
-            <div class="item bg-[#DBEAED] flex flex-col gap-3 items-center py-10 ">
-                <div class="image w-[200px] pb-5">
-                    <img [src]="item.image_url" alt="" class="w-full rounded-xl">
+        <!-- First 4 vertical cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+            @for (item of bestSellerArr.slice(0, 4); track item.id) {
+            <div
+                class="item bg-[#DBEAED] flex flex-col gap-3 items-center py-10 hover:shadow-xl transition-shadow duration-700 ease-in-out">
+                <div class="image w-[300px] pb-5">
+                    <img [src]="item.image_url" alt="" class="w-full rounded-xl" />
                 </div>
-
-                <span class="font-medium text-[17px] leading-[20px] text-[#333] hover:text-orange-600 hover:cursor-pointer"> {{ item.category_name }} </span>
-                <h4 class="hover:text-orange-600 hover:cursor-pointer" >{{item.name}}</h4>
-                <span class="font-normal text-[20px] leading-[20px] text-[#333]">{{item.price| currency:'EGP'}}</span>
-                <button class="mt-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-16 cursor-pointer uppercase  ">Add To Cart</button>
+                <span class="font-medium text-[17px] text-[#333] hover:text-orange-600 cursor-pointer">{{
+                    item.category_name }}</span>
+                <h4 class="hover:text-orange-600 cursor-pointer">{{ item.name }}</h4>
+                <span class="text-[20px] text-[#333]">{{ item.price | currency: 'EGP' }}</span>
+                <button
+                    class="mt-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-16 uppercase cursor-pointer">Add
+                    To Cart</button>
             </div>
-
             }
+        </div>
 
-
+        <!-- Second row with 2 horizontal cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            @for (item of bestSellerArr.slice(4, 6); track item.id) {
+            <div
+                class="item bg-[#DBEAED] flex flex-col lg:flex-row gap-6 items-center p-6 lg:col-span-1 hover:shadow-xl transition-shadow duration-700 ease-in-out">
+                <div class="image w-full md:w-1/2">
+                    <img [src]="item.image_url" alt="" class="w-full rounded-xl" />
+                </div>
+                <div class="details flex-1 text-left ms-2 flex flex-col gap-y-3 items-center lg:items-start">
+                    <span class="font-medium text-[17px] text-[#333] hover:text-orange-600 cursor-pointer">{{
+                        item.category_name }}</span>
+                    <h4 class="hover:text-orange-600 cursor-pointer">{{ item.name }}</h4>
+                    <span class="text-[20px] text-[#333] block">{{ item.price | currency: 'EGP' }}</span>
+                    <button
+                        class="mt-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-8 uppercase lg:px-16">Add
+                        To Cart</button>
+                </div>
+            </div>
+            }
         </div>
     </div>
 </section>
 <!-- bestseller-end  -->
+
+
+<!-- bigsale-start  -->
+<section class="big-sale flex flex-col gap-3 items-center flex justify-center items-center">
+    <!-- Overlay Layer -->
+    <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
+
+    <div class="container z-10 flex flex-col items-center justify-center gap-y-5">
+        <h3 class="font-bold text-[3.2rem]  leading-[36px] text-white">Big Sale Up To 50% Off</h3>
+        <p class="capitalize font-semibold text-[1.2rem]  leading-[36px] text-white">Exclussive Offers For Limited Time
+            on limited items</p>
+        <button
+            class="mt-6 bg-white hover:text-orange-600 text-orange-500 font-semibold py-4 px-8 cursor-pointer text-[20px] ">Set
+            Your Order Now!</button>
+    </div>
+</section>
+<!-- bigsale-end  -->
+
+<!-- daydeals-start  -->
+<section class="daydeals bg-white py-16">
+    <div class="container text-center mx-auto px-4">
+        <h2 class="section-head capitalize">Deals of the day</h2>
+        <p class="desc pb-5">
+            Discover the best deals items Now. Don't miss them!
+        </p>
+
+        <owl-carousel-o [options]="dayDealsSlider" class="py-5">
+            @for(item of bestDealsArr;track item.id){
+            <ng-template carouselSlide>
+                <div class="card">
+                    <div class="image w-[150px]">
+                        <img [src]="item.image_url" [alt]="item.name" class="w-full">
+                    </div>
+
+                    <div class="details">
+                        <span class="font-medium text-[17px] text-[#333] hover:text-orange-600 cursor-pointer">{{
+                            item.category_name }}</span>
+                        <h4 class="hover:text-orange-600 cursor-pointer">{{ item.name }}</h4>
+                        <span class="text-[20px] text-[#333] block">{{ item.price | currency: 'EGP' }}</span>
+                    </div>
+                </div>
+            </ng-template>
+
+            }
+        </owl-carousel-o>
+    </div>
+</section>
+<!-- daydeals-end  -->
