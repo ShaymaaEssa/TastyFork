@@ -1,6 +1,6 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { userToken } from '../../../core/environment/environment';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,15 +12,29 @@ import { CommonModule } from '@angular/common';
 export class NavbarComponent implements OnInit{
 
   isScrolled = false;
-
+  isUserLoged:boolean = false;
+  userName :string|null = "";
+  private readonly router = inject(Router);
+  
   @HostListener('window:scroll', [])
   onWindowScroll(){
     this.isScrolled = window.scrollY >10;
   }
 
-  isUserLoged:boolean = false;
+  
     ngOnInit(): void {
       this.isUserLoged = localStorage.getItem(userToken.token)? true : false;
+      if(this.isUserLoged){
+        this.userName = localStorage.getItem(userToken.token);
+        console.log("userName", this.userName);
+      }
+  }
+
+  signout(){
+    localStorage.removeItem(userToken.token);
+    localStorage.removeItem(userToken.access_token);
+    console.log("signout");
+    this.router.navigate(['/home']); // goes back to home
   }
 
 

@@ -130,7 +130,7 @@
             @for (item of bestSellerArr.slice(0, 4); track item.id) {
             <div
                 class="item bg-[#DBEAED] flex flex-col gap-3 items-center py-10 hover:shadow-xl transition-shadow duration-700 ease-in-out">
-                <div class="image w-[300px] pb-5">
+                <div class="image w-[200px] xl:w-[250px] pb-5">
                     <img [src]="item.image_url" alt="" class="w-full rounded-xl" />
                 </div>
                 <span class="font-medium text-[17px] text-[#333] hover:text-orange-600 cursor-pointer">{{
