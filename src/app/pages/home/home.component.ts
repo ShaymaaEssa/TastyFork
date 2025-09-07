@@ -165,8 +165,9 @@ export class HomeComponent implements OnInit{
 
   }
 
-  addToCart(){
+  addToCart(itemId:string){
     if(this.isUserLogged){
+
 
     }
     else{
