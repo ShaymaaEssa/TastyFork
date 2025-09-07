@@ -34,7 +34,9 @@ export class NavbarComponent implements OnInit{
     localStorage.removeItem(userToken.token);
     localStorage.removeItem(userToken.access_token);
     console.log("signout");
-    this.router.navigate(['/home']); // goes back to home
+    this.router.navigate(['/home']).then(()=>{
+      window.location.reload()
+    }); // goes back to home
   }
 
 

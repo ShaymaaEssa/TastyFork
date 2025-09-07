@@ -5,6 +5,8 @@ import { ICategory } from '../../shared/interfaces/icategory';
 import { IItems } from '../../shared/interfaces/iitems';
 import { CurrencyPipe } from '@angular/common';
 import { ItemsService } from '../../core/services/items-service/items.service';
+import { userToken } from '../../core/environment/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +15,10 @@ import { ItemsService } from '../../core/services/items-service/items.service';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit{
+
+  isUserLogged:boolean = false;
+
+  private readonly router = inject(Router);
 
 
   heroSlider: OwlOptions = {
@@ -112,6 +118,10 @@ export class HomeComponent implements OnInit{
     this.getCategories();
     this.getBestSeller();
     this.getBestDealsItems();
+
+    if(localStorage.getItem(userToken.token)){
+      this.isUserLogged = true;
+    }
     
   }
 
@@ -153,6 +163,15 @@ export class HomeComponent implements OnInit{
       }
     })
 
+  }
+
+  addToCart(){
+    if(this.isUserLogged){
+
+    }
+    else{
+      this.router.navigate(['/signin'])
+    }
   }
 
 }
