@@ -95,7 +95,7 @@
             Whether you're craving something spicy, sweet, or savory — we have something for everyone!</p>
 
         <owl-carousel-o [options]="categoriesSlider" class="py-5">
-            @for(category of categoriesArr; track category.id ){
+            @for(category of categoriesArr; track $index ){
             <ng-template carouselSlide>
                 <div class="card bg-white py-16 px-8 m-4 flex flex-col justify-center items-center">
                     <div class="img flex justify-center items-center">
@@ -127,7 +127,7 @@
 
         <!-- First 4 vertical cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-            @for (item of bestSellerArr.slice(0, 4); track item.id) {
+            @for (item of bestSellerArr.slice(0, 4); track item.simple_id) {
             <div
                 class="item bg-[#DBEAED] flex flex-col gap-3 items-center py-10 hover:shadow-xl transition-shadow duration-700 ease-in-out">
                 <div class="image w-[200px] xl:w-[250px] pb-5">
@@ -147,7 +147,7 @@
 
         <!-- Second row with 2 horizontal cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            @for (item of bestSellerArr.slice(4, 6); track item.id) {
+            @for (item of bestSellerArr.slice(4, 6); track item.simple_id) {
             <div
                 class="item bg-[#DBEAED] flex flex-col lg:flex-row gap-6 items-center p-6 lg:col-span-1 hover:shadow-xl transition-shadow duration-700 ease-in-out">
                 <div class="image w-full md:w-1/2">

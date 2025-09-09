@@ -6,6 +6,7 @@ export interface IItems {
   image_url?: string;
   is_active: boolean;
   category_id: string;
-  category_name: string
+  category_name: string;
+  simple_id:number;
 
 }

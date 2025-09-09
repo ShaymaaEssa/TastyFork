@@ -21,7 +21,7 @@ export class ItemsService {
 
   getBestSellers(): Observable<IItems[]> {
     return from(this.supabaseClient.from('items')
-      .select('id, name, description, price, image_url, is_active, category_id, categories!inner(name)')
+      .select('id, name, description, price, image_url, is_active, category_id, categories!inner(name), simple_id')
       .in('simple_id', [1, 7, 14, 37, 38, 39]))
       .pipe(map((response) => {
         if (response.error) {
@@ -35,7 +35,8 @@ export class ItemsService {
           image_url: item.image_url,
           is_active: item.is_active,
           category_id: item.category_id,
-          category_name: item.categories.name
+          category_name: item.categories.name,
+          simple_id: item.simple_id
         }));
 
         return itemsWithCategory;
@@ -46,7 +47,7 @@ export class ItemsService {
 
   getBestDeals(): Observable<IItems[]> {
     return from(this.supabaseClient.from("items")
-      .select('id, name, description, price, image_url, is_active, category_id, categories!inner(name)')
+      .select('id, name, description, price, image_url, is_active, category_id, categories!inner(name), simple_id')
       .eq('is_active', 1)
       .order('id', { ascending: false }) // just recent items
       .limit(10))
@@ -62,7 +63,8 @@ export class ItemsService {
           image_url: item.image_url,
           is_active: item.is_active,
           category_id: item.category_id,
-          category_name: item.categories.name
+          category_name: item.categories.name,
+          simple_id: item.simple_id
         }));
 
         return itemsWithCategory;
