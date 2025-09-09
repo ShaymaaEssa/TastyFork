@@ -1,7 +1,8 @@
-import { Component, HostListener, inject, OnInit } from '@angular/core';
+import { Component, computed, HostListener, inject, OnInit } from '@angular/core';
 import { userToken } from '../../../core/environment/environment';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthenticationService } from '../../../core/services/auth-service/authentication.service';
 import { CartService } from '../../../core/services/cart-service/cart.service';
 
 @Component({
@@ -13,11 +14,13 @@ import { CartService } from '../../../core/services/cart-service/cart.service';
 export class NavbarComponent implements OnInit{
 
   isScrolled = false;
-  isUserLoged:boolean = false;
-  userName :string|null = "";
+  isUserLoged = computed(() => this.authService.currentClient() !== null);;
+  userName = computed(() => this.authService.currentClient()?.name || '');
   cartNumber :number = 0
 
   private readonly router = inject(Router);
+  private readonly authService = inject(AuthenticationService);
+  
   private readonly cartService = inject(CartService);
 
 
@@ -28,17 +31,28 @@ export class NavbarComponent implements OnInit{
 
   
     ngOnInit(): void {
-      this.isUserLoged = localStorage.getItem(userToken.token)? true : false;
-      if(this.isUserLoged){
-        this.userName = localStorage.getItem(userToken.token);
-        console.log("userName", this.userName);
-        this.cartNumber =  this.cartService.cartNumber();
-      }
+      // this.isUserLoged = localStorage.getItem(userToken.token)? true : false;
+      // if(this.isUserLoged){
+      //   this.userName = localStorage.getItem(userToken.token);
+      //   console.log("userName", this.userName);
+      // }
+
+
+      // console.log("current client",this.authService.currentClient()?.name);
+      // if (this.authService.currentClient() != null){
+      //   this.isUserLoged = true;
+         
+      //   this.userName = this.authService.currentClient()?.name;
+      //   console.log("userName", this.userName);
+      // }
   }
 
-  signout(){
+
+
+  async signout(){
     localStorage.removeItem(userToken.token);
     localStorage.removeItem(userToken.access_token);
+    await this.authService.logout();
     console.log("signout");
     this.router.navigate(['/home']).then(()=>{
       window.location.reload()
