@@ -7,6 +7,7 @@ import { CurrencyPipe } from '@angular/common';
 import { ItemsService } from '../../core/services/items-service/items.service';
 import { userToken } from '../../core/environment/environment';
 import { Router } from '@angular/router';
+import { CartService } from '../../core/services/cart-service/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit{
   isUserLogged:boolean = false;
 
   private readonly router = inject(Router);
+  private readonly cartService = inject(CartService);
 
 
   heroSlider: OwlOptions = {
@@ -167,7 +169,16 @@ export class HomeComponent implements OnInit{
 
   addToCart(itemId:string){
     if(this.isUserLogged){
-
+      this.cartService.addItemToCart("clientId", itemId).subscribe({
+        next:(res)=>{
+          console.log(res);
+          this.cartService.cartNumber.set(res.numOfCartItems);
+          console.log(`Cart Number: ${res.numOfCartItems}`);
+        }, 
+        error:(err)=>{
+          console.log(err);
+        }
+      })
 
     }
     else{

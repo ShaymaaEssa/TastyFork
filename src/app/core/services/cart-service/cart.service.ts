@@ -1,7 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
-import { inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { from, Observable } from 'rxjs';
+import { BehaviorSubject, from, Observable } from 'rxjs';
 import { environment } from '../../environment/environment';
 import { Action } from 'rxjs/internal/scheduler/Action';
 
@@ -9,6 +9,9 @@ import { Action } from 'rxjs/internal/scheduler/Action';
   providedIn: 'root'
 })
 export class CartService {
+
+  
+  cartNumber:WritableSignal<number> = signal(0);
 
   private readonly ID = inject(PLATFORM_ID);
   private supabaseClient !: SupabaseClient;
@@ -26,7 +29,7 @@ export class CartService {
     return from(this.addItemToCartLogic(clientID, itemID, quantity));
   }
 
-  async addItemToCartLogic(clientID:string, itemID:string, quantity=1):Promise<any>{
+  private async addItemToCartLogic(clientID:string, itemID:string, quantity=1):Promise<any>{
 
     try{
       let cartId : string ;
