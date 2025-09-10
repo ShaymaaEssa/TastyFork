@@ -24,12 +24,12 @@ export class CartService {
 
 
 
-  addItemToCart(clientID:Signal<string|undefined>, itemID:string, quantity=1):Observable<any>{
+  addItemToCart(clientID:string, itemID:string, quantity=1):Observable<any>{
 
     return from(this.addItemToCartLogic(clientID, itemID, quantity));
   }
 
-  private async addItemToCartLogic(clientID:Signal<string|undefined>, itemID:string, quantity=1):Promise<any>{
+  private async addItemToCartLogic(clientID:string, itemID:string, quantity=1):Promise<any>{
 
     try{
       let cartId : string ;

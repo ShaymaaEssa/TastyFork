@@ -114,8 +114,9 @@ export class HomeComponent implements OnInit{
 
   private categoryService = inject(CategoriesService);
   private itemsService = inject(ItemsService);
-  private authService = inject (AuthenticationService);
-  clientID = computed(()=>this.authService.currentClient()?.id);
+
+  private readonly authService = inject(AuthenticationService);
+  clientID = computed(() => this.authService.currentClient()?.id || '');
 
 
   ngOnInit(): void {
