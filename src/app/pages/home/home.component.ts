@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CategoriesService } from '../../core/services/Categories/categories.service';
 import { ICategory } from '../../shared/interfaces/icategory';
@@ -8,6 +8,7 @@ import { ItemsService } from '../../core/services/items-service/items.service';
 import { userToken } from '../../core/environment/environment';
 import { Router } from '@angular/router';
 import { CartService } from '../../core/services/cart-service/cart.service';
+import { AuthenticationService } from '../../core/services/auth-service/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,9 @@ export class HomeComponent implements OnInit{
 
   private readonly router = inject(Router);
   private readonly cartService = inject(CartService);
+  private readonly authService = inject(AuthenticationService);
+
+  clientID = computed(() => this.authService.currentClient()?.id || '');
 
 
   heroSlider: OwlOptions = {
@@ -169,7 +173,7 @@ export class HomeComponent implements OnInit{
 
   addToCart(itemId:string){
     if(this.isUserLogged){
-      this.cartService.addItemToCart("clientId", itemId).subscribe({
+      this.cartService.addItemToCart(this.clientID(), itemId).subscribe({
         next:(res)=>{
           console.log(res);
           this.cartService.cartNumber.set(res.numOfCartItems);

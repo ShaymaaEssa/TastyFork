@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { inject, Injectable, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID, Signal, signal, WritableSignal } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { BehaviorSubject, from, Observable } from 'rxjs';
 import { environment } from '../../environment/environment';
@@ -34,6 +34,11 @@ export class CartService {
     try{
       let cartId : string ;
       let newCart : boolean = false;
+
+
+
+      //check the client ID
+      console.log(`Client ID: ${clientID}`);
 
 
       //check if the client has an active cart
