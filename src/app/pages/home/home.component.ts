@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit{
   private readonly router = inject(Router);
   private readonly cartService = inject(CartService);
 
-
   heroSlider: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -172,7 +171,7 @@ export class HomeComponent implements OnInit{
 
   addToCart(itemId:string){
     if(this.isUserLogged){
-      this.cartService.addItemToCart(this.clientID, itemId, 1).subscribe({
+      this.cartService.addItemToCart(this.clientID(), itemId).subscribe({
         next:(res)=>{
           console.log(res);
           this.cartService.cartNumber.set(res.numOfCartItems);

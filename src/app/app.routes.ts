@@ -6,6 +6,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 import { HomeComponent } from './pages/home/home.component';
 import { loggedUserGuard } from './core/guards/logged-user/logged-user.guard';
+import { CartComponent } from './shared/components/cart/cart.component';
 
 export const routes: Routes = [
 
@@ -15,6 +16,7 @@ export const routes: Routes = [
         {path:pages.Signup, component:SignupComponent, title:'sign-up'}
     ]},
     {path:'', component:BlankLayoutComponent, children:[
-        {path:pages.Home, component:HomeComponent, title:'Home'}
+        {path:pages.Home, component:HomeComponent, title:'Home'}, 
+        {path:pages.Cart, component:CartComponent, title:'Cart'}
     ]}
 ];

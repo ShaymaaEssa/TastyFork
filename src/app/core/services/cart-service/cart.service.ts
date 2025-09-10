@@ -36,6 +36,11 @@ export class CartService {
       let newCart : boolean = false;
 
 
+
+      //check the client ID
+      console.log(`Client ID: ${clientID}`);
+
+
       //check if the client has an active cart
       const {data:cartData, error:cartError} = await this.supabaseClient
                                 .from('carts')
