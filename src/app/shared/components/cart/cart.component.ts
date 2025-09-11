@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, WritableSignal } from '@angular/core';
+import { IItems } from '../../interfaces/iitems';
 
 @Component({
   selector: 'app-cart',
@@ -6,6 +7,16 @@ import { Component } from '@angular/core';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
+
+  // cartItems : WritableSignal<IItems> = 
+
+  ngOnInit(): void {
+    this.getCartItems();
+  }
+
+  getCartItems(){
+
+  }
 
 }
