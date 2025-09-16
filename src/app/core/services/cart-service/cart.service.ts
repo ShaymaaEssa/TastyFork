@@ -182,6 +182,19 @@ export class CartService {
 
       if (!cartItems || cartItems.length === 0) return [];
 
+      //get Items details
+      const itemsIds = cartItems.map(item => item.item_id);
+
+      const {data:itemsDetails , error:itemsDetailsErr} = await this.supabaseClient.from('items')
+                                                                                    .select('*')
+                                                                                    .in('id', itemsIds );
+
+      if(itemsDetailsErr) {
+        alert('Failure to get Items Details!');
+        throw itemsDetailsErr;
+      }
+
+      return 
 
 
     } catch(error){
