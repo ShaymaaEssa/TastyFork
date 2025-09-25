@@ -151,11 +151,18 @@ export class CartService {
   }
 
 
-  async getCartItems (clientId:string):Promise<ICartItem[]>{
+  getCartItems(clientId:string):Observable<ICartItem[]>{
+    return from(this.getCartItemsAsync(clientId));
+  }
+
+
+  async getCartItemsAsync (clientId:string):Promise<ICartItem[]>{
 
     try{
 
       //get active cart 
+
+      console.log(`Cart Service, Client Id: ${clientId}`);
 
       const{data:cartID, error:cartIDErr} = await this.supabaseClient.from('carts')
                                                     .select('id')
@@ -167,12 +174,14 @@ export class CartService {
         alert('Failure to get cart id!');
         throw cartIDErr;
       }
+      
+      console.log(`Cart Id - Cart Service: ${cartID.id}`);
 
       //get cart Items 
 
       const {data:cartItems, error:cartItemsError} = await this.supabaseClient.from('cart_items')
-                                                                              .select('item_id, quantity')
-                                                                              .eq('cart_id', cartID)
+                                                                              .select('id,cart_id, item_id, quantity')
+                                                                              .eq('cart_id', cartID.id)
                                                                               ;
 
       if(cartItemsError){
@@ -194,12 +203,29 @@ export class CartService {
         throw itemsDetailsErr;
       }
 
-      return 
+
+      // Combine everything
+      return cartItems.map(cartItem=> {
+        const product = itemsDetails?.find(p=>p.id === cartItem.item_id);
+
+        return {
+          id:cartItem.id,
+          cart_id:cartItem.cart_id,
+          item_id: cartItem.item_id,
+          quantity: cartItem.quantity,
+          name:  product?.name || 'Unknown Product',
+          description: product?.description || '',
+          price: product?.price || 0,
+          img_url: product?.image_url || '',
+          cart_status: 'active',
+          clientId: clientId
+        };
+      }) ;
 
 
     } catch(error){
       console.error('Error getting cart items:', error);
-      
+      return [];
     }
   }
 
