@@ -1,10 +1,11 @@
 import { isPlatformBrowser } from '@angular/common';
 import { inject, Injectable, PLATFORM_ID, Signal, signal, WritableSignal } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { BehaviorSubject, from, map, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, from, map, Observable, of, tap } from 'rxjs';
 import { environment } from '../../environment/environment';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { ICartItem } from '../../../shared/interfaces/icart';
+import { error } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -227,6 +228,26 @@ export class CartService {
       console.error('Error getting cart items:', error);
       return [];
     }
+  }
+
+
+  deleteItemCartService(id:string):Observable<{success:boolean, message:string}>{
+    return from (
+      this.supabaseClient.from('cart_items')
+                        .delete()
+                        .eq('id', id)
+    ).pipe(
+      map(({error}) => ({
+        success:!error, 
+        message: error? `Error: ${error.message}` : 'Item deleted successfully'
+      })), catchError(error =>of({
+      success: false,
+      message: 'Delete failed'
+    })
+    
+    )
+    );
+
   }
 
 }

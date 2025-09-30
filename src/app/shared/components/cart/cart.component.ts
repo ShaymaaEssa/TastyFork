@@ -1,7 +1,8 @@
-import { Component, computed, inject, OnInit, WritableSignal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { IItems } from '../../interfaces/iitems';
 import { CartService } from '../../../core/services/cart-service/cart.service';
 import { AuthenticationService } from '../../../core/services/auth-service/authentication.service';
+import { ICartItem } from '../../interfaces/icart';
 
 @Component({
   selector: 'app-cart',
@@ -19,6 +20,8 @@ export class CartComponent implements OnInit {
   userId = computed(() => this.authService.currentClient()?.id || '');
 
   userName = computed(() => this.authService.currentClient()?.name || '');
+
+  cartItems = signal<ICartItem[]>([]);
 
   ngOnInit(): void {
     this.getCartItems();
@@ -38,11 +41,26 @@ export class CartComponent implements OnInit {
     this.cartService.getCartItems(this.userId()).subscribe({
       next: (items)=>{
         console.log('Cart Items', items);
+        this.cartItems.set(items);
       }, 
       error:(err)=>{
         console.log('error in get Cart Items!');
       }
     })
+  }
+
+  deleteItemCart(id:string){
+    const confirmed = confirm('Are you sure you want to remove this item from your cart?');
+    if (!confirmed) return;
+
+    this.cartService.deleteItemCartService(id).subscribe({
+      next:(res)=>{
+        console.log(res.message);
+      }, error:(err)=>{
+        console.log(err)
+      }
+    })
+
   }
 
 }
