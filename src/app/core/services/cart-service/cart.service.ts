@@ -4,6 +4,7 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { BehaviorSubject, from, Observable } from 'rxjs';
 import { environment } from '../../environment/environment';
 import { Action } from 'rxjs/internal/scheduler/Action';
+import { ICartItem } from '../../../shared/interfaces/icart';
 
 @Injectable({
   providedIn: 'root'
@@ -148,5 +149,7 @@ export class CartService {
     throw error;
   }
 }
+
+
 
 }
