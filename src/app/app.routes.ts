@@ -17,6 +17,7 @@ export const routes: Routes = [
     ]},
     {path:'', component:BlankLayoutComponent, children:[
         {path:pages.Home, component:HomeComponent, title:'Home'}, 
-        {path:pages.Cart, component:CartComponent, title:'Cart'}
+        {path:pages.Cart, component:CartComponent, title:'Cart'}, 
+        
     ]}
 ];
