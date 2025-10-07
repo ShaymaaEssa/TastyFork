@@ -7,6 +7,7 @@ import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.compon
 import { HomeComponent } from './pages/home/home.component';
 import { loggedUserGuard } from './core/guards/logged-user/logged-user.guard';
 import { CartComponent } from './shared/components/cart/cart.component';
+import { DetailsComponent } from './pages/details/details.component';
 
 export const routes: Routes = [
 
@@ -17,6 +18,7 @@ export const routes: Routes = [
     ]},
     {path:'', component:BlankLayoutComponent, children:[
         {path:pages.Home, component:HomeComponent, title:'Home'}, 
-        {path:pages.Cart, component:CartComponent, title:'Cart'}
+        {path:pages.Cart, component:CartComponent, title:'Cart'}, 
+        {path:`${pages.Details}/:id`, component:DetailsComponent, title:'item-details'}
     ]}
 ];

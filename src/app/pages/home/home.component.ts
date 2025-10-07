@@ -6,13 +6,13 @@ import { IItems } from '../../shared/interfaces/iitems';
 import { CurrencyPipe } from '@angular/common';
 import { ItemsService } from '../../core/services/items-service/items.service';
 import { userToken } from '../../core/environment/environment';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CartService } from '../../core/services/cart-service/cart.service';
 import { AuthenticationService } from '../../core/services/auth-service/authentication.service';
 
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule, CurrencyPipe],
+  imports: [CarouselModule, CurrencyPipe, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
