@@ -1,3 +1,4 @@
+import { error } from 'console';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
@@ -70,6 +71,43 @@ export class ItemsService {
         return itemsWithCategory;
 
       }))
+
+  }
+
+
+  getItemDetail(id: string): Observable<IItems> {
+    return from(
+
+      this.supabaseClient.from('items')
+        .select('id,name, description, price, image_url, is_active, category_id, categories!inner(name), simple_id')
+        .eq('id', id)
+        .single()
+    ).pipe(map(({ data: item, error }) => {
+      if (error) {
+        throw error;
+      }
+
+
+      // Safe access with proper fallbacks
+      const categoryName = item.categories && item.categories.length > 0
+        ? item.categories[0].name
+        : 'Uncategorized';
+
+      const itemDetails: IItems = {
+        id: item.id,
+        name: item.name,
+        description: item.description,
+        price: item.price,
+        image_url: item.image_url,
+        is_active: item.is_active,
+        category_id: item.category_id,
+        category_name: categoryName,
+        simple_id: item.simple_id
+      };
+      return itemDetails;
+    }));
+
+
 
   }
 }
