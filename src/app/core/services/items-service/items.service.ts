@@ -89,9 +89,20 @@ export class ItemsService {
 
 
       // Safe access with proper fallbacks
-      const categoryName = item.categories && item.categories.length > 0
-        ? item.categories[0].name
-        : 'Uncategorized';
+      let categoryName :string;
+      if (item.category_id) 
+        {
+          this.supabaseClient.from('categories')
+                              .select ('name')
+                              .eq('id', item.category_id)
+                              .single();
+
+          
+        }
+      else{
+        categoryName = 'Uncategorized';
+      }
+       
 
       const itemDetails: IItems = {
         id: item.id,
