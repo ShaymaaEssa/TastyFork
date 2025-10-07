@@ -19,6 +19,10 @@ export const routes: Routes = [
     {path:'', component:BlankLayoutComponent, children:[
         {path:pages.Home, component:HomeComponent, title:'Home'}, 
         {path:pages.Cart, component:CartComponent, title:'Cart'}, 
+<<<<<<< HEAD
         {path:`${pages.Details}/:id`, component:DetailsComponent, title:'item-details'}
+=======
+        
+>>>>>>> 0f93ee597180b00f6603354fe9e331b726ca560d
     ]}
 ];
