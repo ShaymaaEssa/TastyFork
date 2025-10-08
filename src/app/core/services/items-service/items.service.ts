@@ -82,7 +82,10 @@ export class ItemsService {
         .select('id,name, description, price, image_url, is_active, category_id, categories!inner(name), simple_id')
         .eq('id', id)
         .single()
-    );
+    ).pipe(switchMap(response => {
+      const item = response.data;
+      
+    }));
 
 
 
