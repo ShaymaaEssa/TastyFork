@@ -13,6 +13,35 @@
     </div>
 </section>
 
-<section class="item-details">
-    
+<section class="item-details py-10 px-6">
+    <div class="item-image">
+        <img [src]="item.image_url" [alt]="item.name">
+    </div>
+
+    <div class="item-text">
+        <h2 class="h2 text-3xl font-bold pb-3">{{item.name}}</h2>
+
+        <div class="rating flex flex-row gap-x-3 items-center ">
+            <div class="stars text-[14px]">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+
+            <div class="reviews">
+                <p class="cursor-pointer text-lg"> ( 10 Customer Reviews )</p>
+            </div>
+        </div>
+
+            <div class="price pt-5 flex flex-row gap-x-10 items-center ">
+                <p class="text-2xl font-bold ">${{item.price}}</p>
+                <p class="text-orange-400 text-2xl font-bold ">${{item.price * 3}}</p>
+            </div>
+    </div>
+
 </section>
+
+
+<!-- https://preview.themeforest.net/item/andshop-ecommerce-react-js-template/full_screen_preview/33822003 -->
