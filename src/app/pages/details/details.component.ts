@@ -1,6 +1,8 @@
+import { IItems } from './../../shared/interfaces/iitems';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ItemsService } from '../../core/services/items-service/items.service';
+
 
 @Component({
   selector: 'app-details',
@@ -14,6 +16,8 @@ export class DetailsComponent implements OnInit {
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly itemsService = inject(ItemsService);
 
+  item:IItems = {} as IItems;
+
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe({
       next: (p) => {
@@ -26,15 +30,14 @@ export class DetailsComponent implements OnInit {
     })
   }
 
-  getItemDetails(itemId: string): void {
-    this.itemsService.getItemDetail(itemId).subscribe({
-      next: (data) => {
-        console.log("items detail", data);
-      },
-      error: (error) => {
-        console.log(`item details errors: ${error.message}`);
-      }
-    })
+  async getItemDetails(itemId: string) {
+    try{
+      this.item = await this.itemsService.getItemDetailSimple(itemId);
+      console.log(`item details component: ${this.item.name}`);
+    } catch (error){
+      console.log('item details component error: ', error);
+    }
+    
   }
 
 }

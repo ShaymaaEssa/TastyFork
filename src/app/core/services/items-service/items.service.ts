@@ -3,7 +3,7 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { environment } from '../../environment/environment';
-import { from, map, Observable, switchMap } from 'rxjs';
+import {  map, Observable, switchMap, catchError, from } from 'rxjs';
 import { IItems } from '../../../shared/interfaces/iitems';
 
 @Injectable({
@@ -75,21 +75,63 @@ export class ItemsService {
   }
 
 
-  getItemDetail(id: string): Observable<IItems> {
-    return from(
+  // getItemDetail(id: string): Observable<IItems> {
+  //   return from(
 
-      this.supabaseClient.from('items')
-        .select('id,name, description, price, image_url, is_active, category_id, categories!inner(name), simple_id')
-        .eq('id', id)
-        .single()
-    ).pipe(switchMap(response => {
-      const item = response.data;
+  //     this.supabaseClient.from('items')
+  //       .select()
+  //       .eq('id', id)
+  //       .single()
+  //   ).pipe(switchMap(response => {
+  //     const item = response.data;
       
-    }));
+  //   }));
 
 
 
-  }
+  // }
+
+  async getItemDetailSimple(id:string):Promise<IItems>{
+    try{
+      //get item details
+      const {data:itemDetail, error:itemDetailError} = await this.supabaseClient
+                                                                  .from('items')
+                                                                  .select('id,name, description, price, image_url, is_active, category_id,  simple_id')
+                                                                  .eq('id', id)
+                                                                  .single();
+
+
+      if(itemDetailError)
+        throw itemDetailError;
+
+
+      let categoryName = 'uncategorized';
+      if(itemDetail.category_id){
+      //getCategory name
+      
+      const{data:catName, error:catNameError} = await this.supabaseClient
+                                                          .from('Categories')
+                                                          .select('name')
+                                                          .eq('id', itemDetail.category_id)
+                                                          .single();
+
+      if(!catNameError && catName){
+        categoryName = catName.name;
+      }
+      }
+
+      return {
+        ...itemDetail,
+        category_name : categoryName
+      }
+
+    }catch(error){
+      console.error('item-details service:', error);
+      throw error;
+    }
+
+    
+  } 
 }
 
 
