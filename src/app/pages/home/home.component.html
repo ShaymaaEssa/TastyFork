@@ -147,16 +147,16 @@
 
         <!-- Second row with 2 horizontal cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            @for (item of bestSellerArr.slice(4, 6); track item.simple_id) {
+            @for (item of bestSellerArr.slice(3, 5); track item.simple_id) {
             <div
                 class="item bg-[#DBEAED] flex flex-col lg:flex-row gap-6 items-center p-6 lg:col-span-1 hover:shadow-xl transition-shadow duration-700 ease-in-out">
                 <div class="image w-full md:w-1/2">
                     <img [src]="item.image_url" alt="" class="w-full rounded-xl" />
                 </div>
                 <div class="details flex-1 text-left ms-2 flex flex-col gap-y-3 items-center lg:items-start">
-                    <span class="font-medium text-[17px] text-[#333] hover:text-orange-600 cursor-pointer" [routerLink]="['/details', item.id]">{{
+                    <span class="font-medium text-[17px] text-[#333] hover:text-orange-600 cursor-pointer" >{{
                         item.category_name }}</span>
-                    <h4 class="hover:text-orange-600 cursor-pointer">{{ item.name }}</h4>
+                    <h4 class="hover:text-orange-600 cursor-pointer" [routerLink]="['/details', item.id]">{{ item.name }}</h4>
                     <span class="text-[20px] text-[#333] block">{{ item.price | currency: 'EGP' }}</span>
                     <button
                         class="cursor-pointer mt-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-8 uppercase lg:px-16" (click)="addToCart(item.id)">Add
