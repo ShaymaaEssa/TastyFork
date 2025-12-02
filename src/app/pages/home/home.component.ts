@@ -9,6 +9,8 @@ import { userToken } from '../../core/environment/environment';
 import { Router } from '@angular/router';
 import { CartService } from '../../core/services/cart-service/cart.service';
 import { AuthenticationService } from '../../core/services/auth-service/authentication.service';
+import { FlowbiteService } from '../../core/services/flowbite/flowbite.service';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-home',
@@ -118,8 +120,15 @@ export class HomeComponent implements OnInit{
   private readonly authService = inject(AuthenticationService);
   clientID = computed(() => this.authService.currentClient()?.id || '');
 
+  constructor(private flowbiteService: FlowbiteService) {
+
+  }
 
   ngOnInit(): void {
+    this.flowbiteService.loadFlowbite((flowbite) => {
+      initFlowbite();
+    });
+
     this.getCategories();
     this.getBestSeller();
     this.getBestDealsItems();

@@ -4,6 +4,8 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthenticationService } from '../../../core/services/auth-service/authentication.service';
 import { CartService } from '../../../core/services/cart-service/cart.service';
+import { FlowbiteService } from '../../../core/services/flowbite/flowbite.service';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-navbar',
@@ -30,21 +32,29 @@ export class NavbarComponent implements OnInit{
   }
 
   
-    ngOnInit(): void {
-      // this.isUserLoged = localStorage.getItem(userToken.token)? true : false;
-      // if(this.isUserLoged){
-      //   this.userName = localStorage.getItem(userToken.token);
-      //   console.log("userName", this.userName);
-      // }
+  //   ngOnInit(): void {
+  //     // this.isUserLoged = localStorage.getItem(userToken.token)? true : false;
+  //     // if(this.isUserLoged){
+  //     //   this.userName = localStorage.getItem(userToken.token);
+  //     //   console.log("userName", this.userName);
+  //     // }
 
 
-      // console.log("current client",this.authService.currentClient()?.name);
-      // if (this.authService.currentClient() != null){
-      //   this.isUserLoged = true;
+  //     // console.log("current client",this.authService.currentClient()?.name);
+  //     // if (this.authService.currentClient() != null){
+  //     //   this.isUserLoged = true;
          
-      //   this.userName = this.authService.currentClient()?.name;
-      //   console.log("userName", this.userName);
-      // }
+  //     //   this.userName = this.authService.currentClient()?.name;
+  //     //   console.log("userName", this.userName);
+  //     // }
+  // }
+
+    constructor(private flowbiteService: FlowbiteService) {}
+
+  ngOnInit(): void {
+    this.flowbiteService.loadFlowbite((flowbite) => {
+      initFlowbite();
+    });
   }
 
 
