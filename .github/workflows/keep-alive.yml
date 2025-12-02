@@ -1,0 +1,40 @@
+name: Supabase Keep-Alive
+
+on:
+  schedule:
+    # Every 45 minutes (less frequent, saves GitHub minutes)
+    - cron: '*/45 * * * *'
+  
+  # Optional: Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  wakeup:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check current time
+        run: echo "Job started at $(date)"
+      
+      - name: Ping Supabase project
+        env:
+          PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
+          # Optional: Only if you want to use API key
+          ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          # Simple ping without API key (usually works)
+          echo "Pinging: https://${PROJECT_ID}.supabase.co"
+          
+          # Make the request
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -I "https://${PROJECT_ID}.supabase.co")
+          
+          echo "HTTP Status: $STATUS"
+          
+          # If you need to use API key (optional)
+          # curl -s -o /dev/null \
+          #   -H "apikey: ${ANON_KEY}" \
+          #   "https://${PROJECT_ID}.supabase.co/rest/v1/"
+      
+      - name: Log completion
+        run: echo "✅ Keep-alive completed at $(date -u)"

@@ -1,1 +1,91 @@
-<p>details works!</p>
+<section class="hero relative h-96">
+    <div class="absolute inset-0">
+        <div class="img absolute inset-0 z-0 ">
+            <img src="/cart/cart-hero.jpg" alt="Cart Section image" class="w-full h-full object-cover">
+        </div>
+
+        <div class="overlay absolute bg-black/40 inset-0 z-10"></div>
+    </div>
+
+    <div class="content flex flex-col items-center justify-center absolute inset-0 z-20 text-white">
+        <h1 class="title text-5xl md:text-6xl font-bold mb-4">{{item.name}}</h1>
+        <p class="text-xl md:text-2xl opacity-80">Experience culinary perfection in every bite</p>
+    </div>
+</section>
+
+<section class="item-details py-10 px-6">
+    <div class="container">
+    <div class="grid lg:grid-cols-[30%_minmax(0,1fr)] mt-10 gap-x-10 items-center">
+        <div class="item-image">
+            <img [src]="item.image_url" [alt]="item.name">
+        </div>
+
+        <div class="item-text">
+            <h2 class="h2 text-3xl font-bold pb-3">{{item.name}}</h2>
+
+            <div class="rating flex flex-row gap-x-3 items-center ">
+                <div class="stars text-[14px]">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+
+                <div class="reviews">
+                    <p class="cursor-pointer text-lg"> ( 10 Customer Reviews )</p>
+                </div>
+            </div>
+
+            <div class="price pt-5 flex flex-row gap-x-10 items-center ">
+                <p class="text-2xl font-bold ">${{item.price}}</p>
+                <p class="text-orange-400 text-2xl font-bold line-through ">${{item.price * 3}}</p>
+
+            </div>
+
+
+            <p class="text-gray-500 text-lg pt-4 ">${{item.description}}</p>
+
+            <form class="max-w-xs pt-5">
+                <label for="quantity-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Choose
+                    quantity:</label>
+                <div class="relative flex items-center max-w-[8rem]">
+                    <button type="button" id="decrement-button" data-input-counter-decrement="quantity-input"
+                        class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                        <svg class="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 1h16" />
+                        </svg>
+                    </button>
+                    <input type="text" id="quantity-input" data-input-counter data-input-counter-min="1"
+                        data-input-counter-max="50" aria-describedby="helper-text-explanation"
+                        class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="999" value="5" required />
+                    <button type="button" id="increment-button" data-input-counter-increment="quantity-input"
+                        class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                        <svg class="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 1v16M1 9h16" />
+                        </svg>
+                    </button>
+                </div>
+                <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Please select a 5
+                    digit number from 0 to 9.</p>
+            </form>
+
+            <button class="bg-black text-white font-semibold p-3 px-5 uppercase tracking-widest mt-5 cursor-pointer hover:bg-gray-800  duration-700 ease-in-out">Add To Cart</button>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+</section>
+
+
+<!-- https://preview.themeforest.net/item/andshop-ecommerce-react-js-template/full_screen_preview/33822003 -->

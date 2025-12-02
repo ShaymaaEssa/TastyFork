@@ -1,0 +1,19 @@
+.section-head{
+    position: relative;
+    font-family: "EB Garamond", serif;
+    font-size: 2.5rem;
+    color: black;
+    font-weight: 500;
+}
+
+.section-head::before{
+    content:"";
+    width:20%;
+    height: 2px;
+    background-color: #E1E1E1;
+    position: absolute;
+    top: -10px;
+    left: 0;
+    
+    
+}
