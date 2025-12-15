@@ -1,0 +1,40 @@
+name: Supabase Heartbeat
+
+on:
+  schedule:
+    # Runs every 6 hours (more than enough to prevent pausing)
+    - cron: '0 */6 * * *'
+  
+  # Allow manual trigger from GitHub UI
+  workflow_dispatch:
+
+jobs:
+  update-heartbeat:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update heartbeat timestamp
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          echo "🔄 Updating Supabase heartbeat at $(date -u)"
+          
+          # This updates the heartbeat table - REAL database activity!
+          response=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X PATCH \
+            -H "apikey: ${ANON_KEY}" \
+            -H "Authorization: Bearer ${ANON_KEY}" \
+            -H "Content-Type: application/json" \
+            -H "Prefer: return=minimal" \
+            -d '{"last_ping": "now()"}' \
+            "${SUPABASE_URL}/rest/v1/heartbeat?id=eq.1" \
+            --max-time 10)
+          
+          echo "📡 HTTP Response Code: ${response}"
+          
+          if [[ "${response}" == "204" || "${response}" == "200" ]]; then
+            echo "✅ Success! Heartbeat updated at $(date -u)"
+          else
+            echo "⚠️ Unexpected response: ${response}"
+            echo "But continuing anyway..."
+          fi
