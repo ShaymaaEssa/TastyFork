@@ -8,6 +8,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { loggedUserGuard } from './core/guards/logged-user/logged-user.guard';
 import { CartComponent } from './shared/components/cart/cart.component';
 import { DetailsComponent } from './pages/details/details.component';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 export const routes: Routes = [
 
@@ -20,5 +21,6 @@ export const routes: Routes = [
         {path:pages.Home, component:HomeComponent, title:'Home'}, 
         {path:pages.Cart, component:CartComponent, title:'Cart'}, 
         {path:`${pages.Details}/:item_id`, component:DetailsComponent, title:'item-details'}
-    ]}
+    ]}, 
+    {path:'**', component:NotfoundComponent, title:'Not-found'},
 ];
