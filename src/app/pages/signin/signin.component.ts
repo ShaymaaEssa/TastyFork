@@ -16,6 +16,8 @@ export class SigninComponent {
   private readonly authService = inject(AuthenticationService);
   private readonly router = inject(Router);
 
+  isLoading: boolean = false;
+
   signinForm:FormGroup = new FormGroup ({
     email:new FormControl(null, [Validators.required, Validators.email]    ), 
     password: new FormControl(null, [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{7,}$/)])
@@ -27,10 +29,13 @@ export class SigninComponent {
       return ;
     }
 
+    this.isLoading = true;
+
     this.authService.loginUser(this.signinForm.value)
     .pipe(take(1))
     .subscribe({
       next:(res)=>{
+        this.isLoading = false;
         alert("Successfully Login!")
         // Save token in localStorage
       const accessToken = res.auth.session?.access_token;
@@ -43,6 +48,7 @@ export class SigninComponent {
         this.router.navigate(['/home']);
       }, 
       error:(err)=>{
+        this.isLoading = false;
         alert(`Error: ${err.message}`);
       }
     });

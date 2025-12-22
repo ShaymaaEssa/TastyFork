@@ -17,6 +17,8 @@ export class SignupComponent {
   private readonly authService = inject(AuthenticationService);
   private readonly router = inject (Router);
 
+  isLoading: boolean = false;
+
   signupForm :FormGroup = new FormGroup ({
     name: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]), 
     email:new FormControl(null, [Validators.required, Validators.email]),
@@ -39,10 +41,12 @@ export class SignupComponent {
     }
 
 
+    this.isLoading = true;
     this.authService.registerUser(this.signupForm.value)
                       .pipe(take(1)) // Take only the first value emitted by the Observable, then automatically unsubscribe.
                       .subscribe({
                         next:(res)=>{
+                          this.isLoading = false;
                           alert("Account created successfully!");
                           this.signupForm.reset();
                           setTimeout(()=>{
@@ -50,6 +54,7 @@ export class SignupComponent {
                           }, 2000)
                         }, 
                         error:(err)=>{
+                          this.isLoading = false;
                           alert("Problem in creating account!");;
                         }
                       })
