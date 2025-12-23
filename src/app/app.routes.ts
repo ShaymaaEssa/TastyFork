@@ -21,7 +21,10 @@ export const routes: Routes = [
     {path:'', component:BlankLayoutComponent, children:[
         {path:pages.Home, component:HomeComponent, title:'Home'}, 
         {path:pages.Cart, component:CartComponent, title:'Cart'}, 
-        {path:`${pages.Details}/:item_id`, component:DetailsComponent, title:'item-details'}
+        {path:`${pages.Details}/:item_id`, component:DetailsComponent, title:'item-details', 
+        data: { 
+      renderMode: 'server'  // Force server-side rendering instead of prerendering
+    }}
     ]}, 
     {path:'**', component:NotfoundComponent, title:'Not-found'},
 ];
