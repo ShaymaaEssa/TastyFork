@@ -2,6 +2,8 @@ import { IItems } from './../../shared/interfaces/iitems';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ItemsService } from '../../core/services/items-service/items.service';
+import { FlowbiteService } from '../../core/services/flowbite/flowbite.service';
+import { initFlowbite } from 'flowbite';
 
 
 @Component({
@@ -18,7 +20,13 @@ export class DetailsComponent implements OnInit {
 
   item:IItems = {} as IItems;
 
+  constructor(private flowbiteService: FlowbiteService) { }
   ngOnInit(): void {
+
+    this.flowbiteService.loadFlowbite((flowbite) => {
+      initFlowbite();
+    });
+
     this.activatedRoute.paramMap.subscribe({
       next: (p) => {
         let itemId = p.get('item_id');
