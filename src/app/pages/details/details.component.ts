@@ -7,6 +7,7 @@ import { initFlowbite } from 'flowbite';
 import { userToken } from '../../core/environment/environment';
 import { CartService } from '../../core/services/cart-service/cart.service';
 import { AuthenticationService } from '../../core/services/auth-service/authentication.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class DetailsComponent implements OnInit {
   private readonly itemsService = inject(ItemsService);
   private readonly cartService = inject(CartService);
   private readonly authService = inject(AuthenticationService);
+  private readonly toasterAlert = inject(ToastrService);
   private readonly router = inject(Router);
 
   clientID = computed(() => this.authService.currentClient()?.id || '');
@@ -84,6 +86,7 @@ export class DetailsComponent implements OnInit {
           console.log(res);
           this.cartService.cartNumber.set(res.numOfCartItems);
           console.log(`Cart Number: ${res.numOfCartItems}`);
+          this.toasterAlert.success("Item added successfully!", 'TasktyFork');
         },
         error: (err) => {
           console.log(err);
