@@ -4,6 +4,8 @@ import { CartService } from '../../../core/services/cart-service/cart.service';
 import { AuthenticationService } from '../../../core/services/auth-service/authentication.service';
 import { ICartItem } from '../../interfaces/icart';
 import { CurrencyPipe } from '@angular/common';
+import { get } from 'http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -17,6 +19,7 @@ export class CartComponent implements OnInit {
 
   private readonly authService = inject(AuthenticationService);
   private readonly cartService = inject(CartService);
+  private readonly toasterAlert = inject(ToastrService);
 
   userId = computed(() => this.authService.currentClient()?.id || '');
 
@@ -61,6 +64,8 @@ export class CartComponent implements OnInit {
     this.cartService.deleteItemCartService(id).subscribe({
       next:(res)=>{
         console.log(res.message);
+        this.toasterAlert.success('Item removed from cart successfully!', 'TastyFork');
+        this.getCartItems();
       }, error:(err)=>{
         console.log(err)
       }
