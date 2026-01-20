@@ -9,6 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { take } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -19,6 +20,7 @@ import { take } from 'rxjs';
 export class SignupComponent implements OnInit {
   private readonly authService = inject(AuthenticationService);
   private readonly router = inject(Router);
+  private readonly toasterAlert = inject(ToastrService);
 
   isLoading: boolean = false;
 
@@ -62,7 +64,8 @@ export class SignupComponent implements OnInit {
 
   submitForm() {
     if (this.signupForm.invalid) {
-      alert('Fix Form Problem!');
+      // alert('Fix Form Problem!');
+      this.toasterAlert.error('Fix Form Problem!', 'TastyFork');
       return;
     }
 
@@ -73,7 +76,8 @@ export class SignupComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.isLoading = false;
-          alert('Account created successfully!');
+          // alert('Account created successfully!');
+          this.toasterAlert.success('Account created successfully!', 'TastyFork');
           this.signupForm.reset();
           setTimeout(() => {
             this.router.navigate(['/signin']);
@@ -81,7 +85,8 @@ export class SignupComponent implements OnInit {
         },
         error: (err) => {
           this.isLoading = false;
-          alert('Problem in creating account!');
+          // alert('Problem in creating account!');
+          this.toasterAlert.error('Problem in creating account!', 'TastyFork');
         },
       });
   }

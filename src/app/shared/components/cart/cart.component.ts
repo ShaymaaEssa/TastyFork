@@ -3,10 +3,11 @@ import { IItems } from '../../interfaces/iitems';
 import { CartService } from '../../../core/services/cart-service/cart.service';
 import { AuthenticationService } from '../../../core/services/auth-service/authentication.service';
 import { ICartItem } from '../../interfaces/icart';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
@@ -23,8 +24,11 @@ export class CartComponent implements OnInit {
 
   cartItems = signal<ICartItem[]>([]);
 
+  subtotal = 0;
+
   ngOnInit(): void {
     this.getCartItems();
+    
     console.log(`Client Id - Cart Component: ${this.userId()}`);
     console.log(`Client Name - Cart Component: ${this.userName()}`);
   }
@@ -42,6 +46,7 @@ export class CartComponent implements OnInit {
       next: (items)=>{
         console.log('Cart Items', items);
         this.cartItems.set(items);
+        this.calculateOrderTotal();
       }, 
       error:(err)=>{
         console.log('error in get Cart Items!');
@@ -61,6 +66,10 @@ export class CartComponent implements OnInit {
       }
     })
 
+  }
+
+  calculateOrderTotal(){
+    this.subtotal= this.cartItems().reduce((total, item) => total + item.quantity * item.price, 0);
   }
 
 }

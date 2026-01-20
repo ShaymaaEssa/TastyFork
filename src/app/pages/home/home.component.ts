@@ -11,6 +11,7 @@ import { CartService } from '../../core/services/cart-service/cart.service';
 import { AuthenticationService } from '../../core/services/auth-service/authentication.service';
 import { FlowbiteService } from '../../core/services/flowbite/flowbite.service';
 import { initFlowbite } from 'flowbite';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit{
 
   private readonly router = inject(Router);
   private readonly cartService = inject(CartService);
+  private readonly toasterAlert = inject(ToastrService);
 
   heroSlider: OwlOptions = {
     loop: true,
@@ -186,9 +188,11 @@ export class HomeComponent implements OnInit{
           console.log(res);
           this.cartService.cartNumber.set(res.numOfCartItems);
           console.log(`Cart Number: ${res.numOfCartItems}`);
+          this.toasterAlert.success("Item added to your cart", 'TastyFork');
         }, 
         error:(err)=>{
           console.log(err);
+          this.toasterAlert.error("Failed to add item to cart", 'TastyFork');
         }
       })
 

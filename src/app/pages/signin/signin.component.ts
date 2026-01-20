@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { take } from 'rxjs';
 import { environment, userToken } from '../../core/environment/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signin',
@@ -19,6 +20,7 @@ import { environment, userToken } from '../../core/environment/environment';
 export class SigninComponent implements OnInit {
   private readonly authService = inject(AuthenticationService);
   private readonly router = inject(Router);
+  private readonly toasterAlert = inject(ToastrService);
 
   isLoading: boolean = false;
 
@@ -53,7 +55,9 @@ export class SigninComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.isLoading = false;
-          alert('Successfully Login!');
+          // alert('Successfully Login!');
+          this.toasterAlert.success('Successfully Login!', 'TastyFork');
+
           // Save token in localStorage
           const accessToken = res.auth.session?.access_token;
           console.log(accessToken);
@@ -66,7 +70,8 @@ export class SigninComponent implements OnInit {
         },
         error: (err) => {
           this.isLoading = false;
-          alert(`Error: ${err.message}`);
+          // alert(`Error: ${err.message}`);
+          this.toasterAlert.error(`Error: ${err.message}`, 'TastyFork');
         },
       });
   }
