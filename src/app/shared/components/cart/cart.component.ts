@@ -64,6 +64,7 @@ export class CartComponent implements OnInit {
     this.cartService.deleteItemCartService(id).subscribe({
       next:(res)=>{
         console.log(res.message);
+        console.log('Item removed from cart successfully!');
         this.toasterAlert.success('Item removed from cart successfully!', 'TastyFork');
         this.getCartItems();
       }, error:(err)=>{
